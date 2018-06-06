@@ -21,7 +21,6 @@
 #define GPIO(PORT, NUM) (((PORT)-'A') * 32 + (NUM))
 #define GPIO2PORT(PIN) ((PIN) / 32)
 #define GPIO2BIT(PIN) (1<<((PIN) % 32))
-
 static Pio * const digital_regs[] = {
     PIOA, PIOB, PIOC, PIOD
 };
@@ -150,10 +149,12 @@ gpio_in_read(struct gpio_in g)
  ****************************************************************/
 
 static const uint8_t adc_pins[] = {
-    GPIO('A', 2), GPIO('A', 3), GPIO('A', 4), GPIO('A', 6),
-    GPIO('A', 22), GPIO('A', 23), GPIO('A', 24), GPIO('A', 16),
-    GPIO('B', 12), GPIO('B', 13), GPIO('B', 17), GPIO('B', 18),
-    GPIO('B', 19), GPIO('B', 20)
+    GPIO('A', 8), GPIO('A', 17), GPIO('A', 18), GPIO('A', 19),
+    GPIO('A', 20), GPIO('A', 21), GPIO('A', 22), GPIO('B', 0),
+    GPIO('B', 1), GPIO('B', 2), GPIO('B', 3), GPIO('C',0),
+    GPIO('C', 1), GPIO('C', 2), GPIO('C', 3), GPIO('C', 4),
+    GPIO('C', 12), GPIO('C', 13), GPIO('C', 15), GPIO('C', 26),
+    GPIO('C', 27), GPIO('C', 29), GPIO('C', 30), GPIO('C', 31)
 };
 
 #define ADC_FREQ_MAX 20000000

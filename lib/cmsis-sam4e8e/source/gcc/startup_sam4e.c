@@ -37,9 +37,9 @@
 // #include "sam4e.h"
 // #include "exceptions.h"
 // #include "system_sam4e.h"
-// #if __FPU_USED /* CMSIS defined value to indicate usage of FPU */
-// #include "fpu.h"
-// #endif
+#if __FPU_USED /* CMSIS defined value to indicate usage of FPU */
+#include "fpu.h"
+#endif
 
 #include "sam4e8e.h"
 
