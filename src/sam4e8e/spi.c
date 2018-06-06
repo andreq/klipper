@@ -12,8 +12,8 @@
 #include <sam4e8e.h>
 #include <string.h>
 
-#define REGPTR     SPI0
-#define PERIPH_ID  ID_SPI0
+#define REGPTR     SPI
+#define PERIPH_ID  ID_SPI
 
 #define CHANNEL    0 // Use same channel for all
 
@@ -21,9 +21,9 @@ static void
 spi_init(void)
 {
     /* Configure SCK, MISO and MOSI */
-    gpio_peripheral('A', PIO_PA25A_SPI0_MISO, 'A', 0); // Arduino 74
-    gpio_peripheral('A', PIO_PA26A_SPI0_MOSI, 'A', 0); // Arduino 75
-    gpio_peripheral('A', PIO_PA27A_SPI0_SPCK, 'A', 0); // Arduino 76
+    gpio_peripheral('A', PIO_PA12A_MISO , 'A', 0); // Arduino 74
+    gpio_peripheral('A', PIO_PA13A_MOSI, 'A', 0); // Arduino 75
+    gpio_peripheral('A', PIO_PA14A_SPCK, 'A', 0); // Arduino 76
 
     // Enable SPI clocks
     if (!(PMC->PMC_PCSR0 & (1u << PERIPH_ID))) {

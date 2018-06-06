@@ -188,39 +188,39 @@ gpio_adc_setup(uint8_t pin)
 uint32_t
 gpio_adc_sample(struct gpio_adc g)
 {
-    uint32_t chsr = ADC->ADC_CHSR & 0xffff;
-    if (!chsr) {
-        // Start sample
-        ADC->ADC_CHER = g.bit;
-        ADC->ADC_CR = ADC_CR_START;
-        goto need_delay;
-    }
-    if (chsr != g.bit)
-        // Sampling in progress on another channel
-        goto need_delay;
-    if (!(ADC->ADC_ISR & ADC_ISR_DRDY))
-        // Conversion still in progress
-        goto need_delay;
-    // Conversion ready
+    // uint32_t chsr = ADC->ADC_CHSR & 0xffff;
+    // if (!chsr) {
+    //     // Start sample
+    //     ADC->ADC_CHER = g.bit;
+    //     ADC->ADC_CR = ADC_CR_START;
+    //     goto need_delay;
+    // }
+    // if (chsr != g.bit)
+    //     // Sampling in progress on another channel
+    //     goto need_delay;
+    // if (!(ADC->ADC_ISR & ADC_ISR_DRDY))
+    //     // Conversion still in progress
+    //     goto need_delay;
+    // // Conversion ready
     return 0;
-need_delay:
-    return ADC_FREQ_MAX * 1000ULL / CONFIG_CLOCK_FREQ;
+// need_delay:
+//     return ADC_FREQ_MAX * 1000ULL / CONFIG_CLOCK_FREQ;
 }
 
 // Read a value; use only after gpio_adc_sample() returns zero
 uint16_t
 gpio_adc_read(struct gpio_adc g)
 {
-    ADC->ADC_CHDR = g.bit;
-    return ADC->ADC_LCDR;
+    // ADC->ADC_CHDR = g.bit;
+    return 0;
 }
 
 // Cancel a sample that may have been started with gpio_adc_sample()
 void
 gpio_adc_cancel_sample(struct gpio_adc g)
 {
-    irqstatus_t flag = irq_save();
-    if ((ADC->ADC_CHSR & 0xffff) == g.bit)
-        gpio_adc_read(g);
-    irq_restore(flag);
+    // irqstatus_t flag = irq_save();
+    // if ((ADC->ADC_CHSR & 0xffff) == g.bit)
+    //     gpio_adc_read(g);
+    // irq_restore(flag);
 }

@@ -6,7 +6,7 @@ CROSS_PREFIX=arm-none-eabi-
 dirs-y += src/sam4e8e src/generic
 dirs-y += lib/cmsis-sam4e8e/source lib/cmsis-sam4e8e/source/gcc
 
-CFLAGS += -mthumb -mcpu=cortex-m4
+CFLAGS += -mthumb -mcpu=cortex-m4 #-mfpu=fpv4-sp-d16 -mfloat-abi=hard
 CFLAGS += -Ilib/cmsis-sam4e8e/include -Ilib/cmsis-sam4e8e/cmsis-include
 CFLAGS += -D__SAM4E8E__
 
